@@ -1,0 +1,95 @@
+<p>
+  <mat-toolbar color="accent">
+    <span>Crud Application</span>
+    <span class="example-spacer"></span>
+   <button mat-raised-button (click)="openAddEditEmpForm()">ADD EMPLOYEE</button>
+  </mat-toolbar>
+</p>
+
+<div class="main">
+  <div class="example-header">
+    <mat-form-field>
+      <input matInput (keyup)="applyFilter($event)" placeholder="Filter">
+    </mat-form-field>
+  </div>
+  
+  <div class="example-container mat-elevation-z8">
+  
+    <mat-table [dataSource]="dataSource" matSort>
+  
+      <!-- ID Column -->
+      <ng-container matColumnDef="id">
+        <mat-header-cell *matHeaderCellDef mat-sort-header> ID </mat-header-cell>
+        <mat-cell *matCellDef="let row"> {{row.id}} </mat-cell>
+      </ng-container>
+  
+      <!-- Progress Column -->
+      <ng-container matColumnDef="firstName">
+        <mat-header-cell *matHeaderCellDef mat-sort-header> First Name </mat-header-cell>
+        <mat-cell *matCellDef="let row"> {{row.firstName}} </mat-cell>
+      </ng-container>
+  
+      <!-- Name Column -->
+      <ng-container matColumnDef="lastName">
+        <mat-header-cell *matHeaderCellDef mat-sort-header> Last Name </mat-header-cell>
+        <mat-cell *matCellDef="let row"> {{row.lastName}} </mat-cell>
+      </ng-container>
+  
+      <!-- Color Column -->
+      <ng-container matColumnDef="email">
+        <mat-header-cell *matHeaderCellDef mat-sort-header> Email </mat-header-cell>
+        <mat-cell *matCellDef="let row" [style.color]="row.color"> {{row.email}} </mat-cell>
+      </ng-container>
+  
+      <ng-container matColumnDef="dob">
+        <mat-header-cell *matHeaderCellDef mat-sort-header> Date of birth </mat-header-cell>
+        <mat-cell *matCellDef="let row" [style.color]="row.color"> {{row.dob | date}} </mat-cell>
+      </ng-container>
+  
+      <ng-container matColumnDef="gender">
+        <mat-header-cell *matHeaderCellDef mat-sort-header> Gender </mat-header-cell>
+        <mat-cell *matCellDef="let row" [style.color]="row.color"> {{row.gender}} </mat-cell>
+      </ng-container>
+  
+      <ng-container matColumnDef="education">
+        <mat-header-cell *matHeaderCellDef mat-sort-header> Education </mat-header-cell>
+        <mat-cell *matCellDef="let row" [style.color]="row.color"> {{row.education}} </mat-cell>
+      </ng-container>
+  
+      <ng-container matColumnDef="company">
+        <mat-header-cell *matHeaderCellDef mat-sort-header> Company </mat-header-cell>
+        <mat-cell *matCellDef="let row" [style.color]="row.color"> {{row.company}} </mat-cell>           
+      </ng-container>
+  
+      <ng-container matColumnDef="experience">
+        <mat-header-cell *matHeaderCellDef mat-sort-header> Experience </mat-header-cell>
+        <mat-cell *matCellDef="let row" [style.color]="row.color"> {{row.experience}} </mat-cell>
+      </ng-container>
+  
+      <ng-container matColumnDef="package">
+        <mat-header-cell *matHeaderCellDef mat-sort-header> Package </mat-header-cell>
+        <mat-cell *matCellDef="let row" [style.color]="row.color"> {{row.package | currency:'INR'}}L </mat-cell>
+      </ng-container>
+
+      <ng-container matColumnDef="action">
+        <mat-header-cell *matHeaderCellDef mat-sort-header> Action </mat-header-cell>
+        <mat-cell *matCellDef="let row" [style.color]="row.color"> 
+        <button mat-icon-button color="primary" (click)="openEditForm(row)">
+          <mat-icon>edit</mat-icon>
+        </button>
+        <button mat-icon-button color="warn" (click)="deleteEmployee(row.id)">
+          <mat-icon>delete</mat-icon>
+        </button>
+        </mat-cell>
+      </ng-container>
+  
+      <mat-header-row *matHeaderRowDef="displayedColumns"></mat-header-row>
+      <mat-row *matRowDef="let row; columns: displayedColumns;">
+      </mat-row>
+    </mat-table>
+  
+    <mat-paginator [pageSizeOptions]="[5, 10, 25, 100]"></mat-paginator>
+  </div>
+</div>
+
+
